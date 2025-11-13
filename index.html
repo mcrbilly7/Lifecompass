@@ -28,6 +28,7 @@
         <button class="nav-link active" data-section="todaySection">Today</button>
         <button class="nav-link" data-section="goalsSection">Goals</button>
         <button class="nav-link" data-section="insightsSection">Insights</button>
+        <button class="nav-link" data-section="settingsSection">Settings</button>
         <button class="nav-link" data-section="premiumSection">Premium</button>
       </nav>
 
@@ -124,6 +125,15 @@
             </div>
           </div>
 
+          <!-- Reminder banner -->
+          <div id="reminderBanner" class="card reminder-card hidden">
+            <h3 class="section-title small">Upcoming steps</h3>
+            <p class="micro-text">
+              These steps are getting close to their due date:
+            </p>
+            <ul id="reminderList" class="reminder-list"></ul>
+          </div>
+
           <div class="card">
             <div class="card-header">
               <div>
@@ -206,7 +216,8 @@
             <div class="card-header">
               <h3 class="section-title">Goals & Steps</h3>
               <p class="section-subtitle">
-                Tap on a goal to see its steps and add new ones.
+                Add steps to each goal. Leave the due date empty and Life Compass will
+                suggest one for you.
               </p>
             </div>
 
@@ -257,12 +268,54 @@
               <h3 class="section-title small">Your data, your device</h3>
               <p class="micro-text">
                 Life Compass saves everything locally in your browser. If you want a backup, you
-                can download an encrypted–friendly JSON file and store it wherever you like.
+                can download a JSON file and store it wherever you like.
               </p>
               <button id="exportBackupBtn" class="btn-secondary">
                 Download my backup
               </button>
             </div>
+          </div>
+        </section>
+
+        <!-- Settings Section -->
+        <section id="settingsSection" class="content-section">
+          <div class="card">
+            <h2 class="section-title">Settings</h2>
+            <p class="section-subtitle">
+              Control reminders and how Life Compass nudges you.
+            </p>
+
+            <form id="settingsForm" class="vertical-form settings-form">
+              <div class="field-group">
+                <label class="field-label" for="remindersEnabled">
+                  Task reminders
+                </label>
+                <div class="settings-row">
+                  <input type="checkbox" id="remindersEnabled" />
+                  <span class="micro-text">
+                    Show reminders when steps are close to their due date. You can also
+                    allow browser notifications when prompted.
+                  </span>
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label" for="remindDaysBefore">
+                  Remind me this many days before due date
+                </label>
+                <select id="remindDaysBefore">
+                  <option value="0">On the due day</option>
+                  <option value="1">1 day before</option>
+                  <option value="3">3 days before</option>
+                  <option value="7">7 days before</option>
+                </select>
+              </div>
+
+              <p class="micro-text">
+                Browser notifications are only shown if your browser supports them and you grant
+                permission when asked. You can change that in your browser’s site settings.
+              </p>
+            </form>
           </div>
         </section>
 
@@ -372,4 +425,4 @@
 
   <script src="script.js" defer></script>
 </body>
-</html>
+  </html>
