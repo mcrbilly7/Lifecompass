@@ -1,9 +1,13 @@
-// Simple Life Compass state & logic
+// Life Compass state & logic with reminders
 const STORAGE_KEY = "life-compass-state-v1";
 
 const defaultState = {
   goals: [],
-  steps: [], // { id, goalId, title, dueDate, isToday, completed, createdAt }
+  steps: [], // { id, goalId, title, dueDate, isToday, completed, createdAt, lastReminderDate }
+  settings: {
+    remindersEnabled: true,
+    remindDaysBefore: 1, // days before due date
+  },
 };
 
 let state = loadState();
@@ -30,6 +34,12 @@ const insightCompletionRate = document.getElementById("insightCompletionRate");
 const prioritizeTodayBtn = document.getElementById("prioritizeTodayBtn");
 const exportBackupBtn = document.getElementById("exportBackupBtn");
 
+const remindersEnabledInput = document.getElementById("remindersEnabled");
+const remindDaysBeforeSelect = document.getElementById("remindDaysBefore");
+
+const reminderBanner = document.getElementById("reminderBanner");
+const reminderList = document.getElementById("reminderList");
+
 const navLinks = document.querySelectorAll(".nav-link");
 const sections = document.querySelectorAll(".content-section");
 const premiumPill = document.querySelector(".btn-premium-pill");
@@ -43,6 +53,9 @@ function loadState() {
     const parsed = JSON.parse(raw);
     if (!parsed.goals || !parsed.steps) {
       return structuredClone(defaultState);
+    }
+    if (!parsed.settings) {
+      parsed.settings = structuredClone(defaultState.settings);
     }
     return parsed;
   } catch (e) {
@@ -70,6 +83,38 @@ function formatDate(dateStr) {
   });
 }
 
+function daysUntil(dateStr) {
+  if (!dateStr) return null;
+  const now = new Date();
+  const target = new Date(dateStr + "T00:00:00");
+  const diffMs = target - now;
+  return Math.floor(diffMs / (1000 * 60 * 60 * 24));
+}
+
+// Simple "smart" due date chooser based on goal timeframe
+function pickSmartDueDate(goal) {
+  const base = new Date();
+  let addDays = 0;
+  switch (goal.timeframe) {
+    case "Today":
+      addDays = 0;
+      break;
+    case "This Week":
+      addDays = 2;
+      break;
+    case "This Month":
+      addDays = 7;
+      break;
+    case "Long Term":
+      addDays = 30;
+      break;
+    default:
+      addDays = 3;
+  }
+  base.setDate(base.getDate() + addDays);
+  return base.toISOString().slice(0, 10);
+}
+
 // Motivation
 const MOTIVATION_LINES = [
   "You don’t have to fix everything today. One small step is enough.",
@@ -91,6 +136,8 @@ function renderAll() {
   renderTodayList();
   renderGoals();
   renderInsights();
+  renderSettings();
+  renderReminders();
 }
 
 function renderHeader() {
@@ -174,7 +221,10 @@ function renderTodayList() {
     meta.className = "step-meta";
     const pieces = [];
     if (goal) pieces.push(`Goal: ${goal.title}`);
-    if (step.dueDate) pieces.push(`Due: ${formatDate(step.dueDate)}`);
+    if (step.dueDate) {
+      const dDiff = daysUntil(step.dueDate);
+      pieces.push(`Due: ${formatDate(step.dueDate)}${dDiff < 0 ? " (overdue)" : ""}`);
+    }
     pieces.push(step.completed ? "Done" : "Not done yet");
     meta.textContent = pieces.join(" • ");
 
@@ -293,7 +343,6 @@ function renderGoals() {
 
     const dateInput = document.createElement("input");
     dateInput.type = "date";
-    dateInput.value = todayStr;
 
     const addBtn = document.createElement("button");
     addBtn.type = "submit";
@@ -308,18 +357,26 @@ function renderGoals() {
       e.preventDefault();
       const titleVal = input.value.trim();
       if (!titleVal) return;
+
+      let due = dateInput.value;
+      if (!due) {
+        due = pickSmartDueDate(goal);
+      }
+
       const step = {
         id: uuid(),
         goalId: goal.id,
         title: titleVal,
-        dueDate: dateInput.value || todayStr,
+        dueDate: due,
         isToday: true,
         completed: false,
         createdAt: new Date().toISOString(),
+        lastReminderDate: null,
       };
       state.steps.push(step);
       saveState();
       input.value = "";
+      dateInput.value = "";
       renderAll();
     });
 
@@ -341,6 +398,93 @@ function renderInsights() {
   insightTotalSteps.textContent = totalSteps;
   insightStepsCompleted.textContent = stepsCompleted;
   insightCompletionRate.textContent = `${completionRate}%`;
+}
+
+function renderSettings() {
+  remindersEnabledInput.checked = !!state.settings.remindersEnabled;
+  remindDaysBeforeSelect.value = String(state.settings.remindDaysBefore);
+}
+
+// --- Reminders ---
+function renderReminders() {
+  if (!state.settings.remindersEnabled) {
+    reminderBanner.classList.add("hidden");
+    reminderList.innerHTML = "";
+    return;
+  }
+
+  const upcoming = [];
+  const daysBefore = Number(state.settings.remindDaysBefore);
+
+  state.steps.forEach((step) => {
+    if (!step.dueDate || step.completed) return;
+    const diff = daysUntil(step.dueDate);
+    if (diff === null) return;
+    if (diff < 0) return; // already overdue
+    if (diff <= daysBefore) {
+      upcoming.push(step);
+    }
+  });
+
+  if (upcoming.length === 0) {
+    reminderBanner.classList.add("hidden");
+    reminderList.innerHTML = "";
+    return;
+  }
+
+  reminderBanner.classList.remove("hidden");
+  reminderList.innerHTML = "";
+  upcoming.slice(0, 5).forEach((step) => {
+    const li = document.createElement("li");
+    li.className = "reminder-item";
+    const goal = state.goals.find((g) => g.id === step.goalId);
+    const goalTitle = goal ? goal.title : "Untitled goal";
+    const diff = daysUntil(step.dueDate);
+    let timeText = "Due today";
+    if (diff > 0) timeText = `Due in ${diff} day${diff === 1 ? "" : "s"}`;
+    li.textContent = `${step.title} · ${goalTitle} · ${timeText}`;
+    reminderList.appendChild(li);
+  });
+
+  maybeShowBrowserNotification(upcoming);
+}
+
+function maybeShowBrowserNotification(upcomingSteps) {
+  if (!state.settings.remindersEnabled) return;
+  if (!("Notification" in window)) return;
+
+  // Only notify once per day per step
+  const todayDateOnly = new Date().toISOString().slice(0, 10);
+
+  const stepsToNotify = upcomingSteps.filter((step) => {
+    return step.lastReminderDate !== todayDateOnly;
+  });
+
+  if (stepsToNotify.length === 0) return;
+
+  if (Notification.permission === "default") {
+    Notification.requestPermission().then((perm) => {
+      if (perm === "granted") {
+        maybeShowBrowserNotification(upcomingSteps);
+      }
+    });
+    return;
+  }
+
+  if (Notification.permission !== "granted") return;
+
+  const first = stepsToNotify[0];
+  const goal = state.goals.find((g) => g.id === first.goalId);
+  const goalTitle = goal ? goal.title : "a goal";
+
+  new Notification("Life Compass – step due soon", {
+    body: `${first.title} (${goalTitle}) is getting close to its due date.`,
+  });
+
+  stepsToNotify.forEach((step) => {
+    step.lastReminderDate = todayDateOnly;
+  });
+  saveState();
 }
 
 // --- Export backup ---
@@ -401,14 +545,21 @@ quickStepForm.addEventListener("submit", (e) => {
   if (!title) return;
 
   const selectedGoalId = quickStepGoalSelect.value || state.goals[0].id;
+  const goal = state.goals.find((g) => g.id === selectedGoalId) || {
+    timeframe: "Today",
+  };
+
+  const due = pickSmartDueDate(goal);
+
   const step = {
     id: uuid(),
     goalId: selectedGoalId,
     title,
-    dueDate: todayStr,
+    dueDate: due,
     isToday: true,
     completed: false,
     createdAt: new Date().toISOString(),
+    lastReminderDate: null,
   };
 
   state.steps.push(step);
@@ -441,6 +592,19 @@ prioritizeTodayBtn.addEventListener("click", () => {
 if (exportBackupBtn) {
   exportBackupBtn.addEventListener("click", exportBackup);
 }
+
+// Settings changes
+remindersEnabledInput.addEventListener("change", () => {
+  state.settings.remindersEnabled = remindersEnabledInput.checked;
+  saveState();
+  renderAll();
+});
+
+remindDaysBeforeSelect.addEventListener("change", () => {
+  state.settings.remindDaysBefore = Number(remindDaysBeforeSelect.value);
+  saveState();
+  renderAll();
+});
 
 // Navigation
 navLinks.forEach((link) => {
