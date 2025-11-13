@@ -3,209 +3,180 @@
 <head>
   <meta charset="UTF-8" />
   <title>Life Compass – Small steps. Real progress.</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta
-    name="description"
-    content="Life Compass breaks big goals into tiny, honest steps and gently learns how you work (if you make an account) so it can recommend realistic next moves."
-  />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <div class="page-bg"></div>
+<body class="app-page">
+  <!-- TOP NAV -->
+  <header class="top-nav">
+    <div class="nav-inner">
+      <button id="navToggle" class="sections-btn" aria-label="Open sections">
+        <span class="sections-icon">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+        <span class="sections-label">Sections</span>
+      </button>
 
-  <header class="main-header">
-    <button id="drawerToggle" class="hamburger-btn" aria-label="Open sections">
-      <span></span><span></span><span></span>
-    </button>
-
-    <div class="header-left">
-      <div class="logo-chip">
-        <div class="logo-circle">LC</div>
-        <div class="logo-text">
-          <span class="logo-title">Life Compass</span>
-          <span class="logo-tagline">Small steps. Real progress.</span>
+      <div class="brand">
+        <div class="brand-logo">LC</div>
+        <div class="brand-text">
+          <span class="brand-name">Life Compass</span>
         </div>
       </div>
-    </div>
 
-    <nav class="top-nav">
-      <button class="top-nav-link active" data-section="homeSection">Home</button>
-      <button class="top-nav-link" data-section="todaySection">Today</button>
-      <button class="top-nav-link" data-section="goalsSection">Goals</button>
-      <button class="top-nav-link" data-section="ideasSection">Ideas</button>
-      <button class="top-nav-link" data-section="insightsSection">Insights</button>
-      <button class="top-nav-link" data-section="premiumSection">Premium</button>
-    </nav>
+      <nav class="top-links">
+        <button class="top-link side-link active" data-section="homeSection">Home</button>
+        <button class="top-link side-link" data-section="todaySection">Today</button>
+        <button class="top-link side-link" data-section="goalsSection">Goals</button>
+        <button class="top-link side-link" data-section="ideasSection">Ideas</button>
+        <button class="top-link side-link" data-section="insightsSection">Insights</button>
+      </nav>
 
-    <div class="header-right">
-      <span class="header-email">lifecompass270@gmail.com</span>
-      <button class="btn-primary header-cta" data-section="todaySection">
-        Open app
-      </button>
+      <div class="top-right">
+        <span class="top-email">lifecompass270@gmail.com</span>
+        <button class="btn-primary side-link" data-section="todaySection">
+          Open App
+        </button>
+      </div>
     </div>
   </header>
 
-  <!-- Slide-out drawer -->
-  <aside id="drawer" class="drawer">
-    <div class="drawer-inner">
-      <div class="drawer-header">
-        <span class="drawer-title">Sections</span>
-        <button id="drawerClose" class="drawer-close" aria-label="Close sections">✕</button>
-      </div>
-      <nav class="drawer-nav">
-        <button class="drawer-link" data-section="homeSection">Home</button>
-        <button class="drawer-link" data-section="todaySection">Today</button>
-        <button class="drawer-link" data-section="goalsSection">Goals</button>
-        <button class="drawer-link" data-section="templatesSection">Templates</button>
-        <button class="drawer-link" data-section="ideasSection">Ideas</button>
-        <button class="drawer-link" data-section="insightsSection">Insights</button>
-        <button class="drawer-link" data-section="weeklyResetSection">Weekly Reset</button>
-        <button class="drawer-link" data-section="settingsSection">Settings</button>
-        <button class="drawer-link" data-section="accountSection">Account</button>
-        <button class="drawer-link" data-section="premiumSection">Premium</button>
-        <button class="drawer-link" data-section="crisisSection">Crisis Help</button>
-        <button class="drawer-link drawer-link-admin hidden" data-section="adminSection">
-          Admin
-        </button>
-      </nav>
-    </div>
+  <!-- SIDE NAV DRAWER -->
+  <aside class="side-nav">
+    <h2 class="side-title">Sections</h2>
+    <nav class="side-nav-links">
+      <button class="side-link active" data-section="homeSection">Home</button>
+      <button class="side-link" data-section="todaySection">Today</button>
+      <button class="side-link" data-section="goalsSection">Goals</button>
+      <button class="side-link" data-section="ideasSection">Ideas</button>
+      <button class="side-link" data-section="insightsSection">Insights</button>
+      <button class="side-link" data-section="settingsSection">Settings</button>
+      <button class="side-link" data-section="premiumSection">Premium</button>
+      <button class="side-link side-link-admin hidden" data-section="adminSection">
+        Admin
+      </button>
+    </nav>
   </aside>
 
-  <main class="app-shell">
-    <!-- HOME -->
-    <section id="homeSection" class="view visible">
-      <div class="hero-grid">
-        <section class="card hero-main">
-          <p class="eyebrow">Gentle life planner · Free first</p>
+  <main class="content-shell">
+    <!-- HOME -------------------------------------------------------------->
+    <section id="homeSection" class="content-section visible">
+      <div class="hero">
+        <div class="hero-left">
+          <p class="hero-kicker">Gentle life planner · Free first</p>
           <h1 class="hero-title">
-            Stop trying to fix your whole life at once.
+            Stop trying to do everything.<br />
+            Start a plan that works.
           </h1>
-          <p class="hero-subtitle">
-            Life Compass breaks big goals into tiny, honest steps – and if you want,
-            a free account lets it quietly learn how you work so it can suggest
-            realistic next moves.
+          <p class="hero-sub">
+            Life Compass breaks big goals into next steps and, if you want,
+            a free account lets it quietly learn what’s right for you over time.
           </p>
-          <div class="hero-cta-row">
-            <button class="btn-primary" data-section="todaySection">Plan today in 2 minutes</button>
-            <button class="btn-secondary" data-section="ideasSection">Get step ideas</button>
+
+          <div class="hero-ctas">
+            <button class="btn-primary side-link" data-section="todaySection">
+              Plan today in 2 minutes
+            </button>
+            <button class="btn-secondary side-link" data-section="ideasSection">
+              Get step ideas
+            </button>
           </div>
+
           <p class="hero-note">
-            No pressure, no fake hustle. Guests get the full app. Accounts are free
-            and only unlock “learning you”.
+            No pressure, no fake hustle. Guests get the full app. Free accounts only unlock
+            gentle “learning you”.
           </p>
+
           <div class="hero-pill-row">
-            <span class="pill">No fake productivity</span>
-            <span class="pill">Works with “messy” days</span>
-            <span class="pill">Built for real life, not perfect people</span>
+            <span class="hero-pill">No fake productivity</span>
+            <span class="hero-pill">Works with “messy” days</span>
+            <span class="hero-pill">Built for real life</span>
+            <button class="hero-pill btn-premium-pill">
+              See optional Premium support
+            </button>
           </div>
-        </section>
+        </div>
 
-        <section class="card hero-side">
-          <h2 class="section-title">Goal Breakdown</h2>
-          <p class="section-subtitle">
-            Type one thing you want to change. Life Compass will turn it into tiny
-            steps and pick a soft due date.
-          </p>
+        <div class="hero-right">
+          <div class="breakdown-card">
+            <h2 class="breakdown-title">Goal Breakdown</h2>
+            <p class="breakdown-sub">
+              Type one thing you want to change. Life Compass will break it into tiny steps and pick a soft due date.
+            </p>
 
-          <form id="breakdownForm" class="vertical-form">
-            <label for="breakdownText" class="field-label">What’s your goal?</label>
-            <textarea id="breakdownText" rows="3"
-              placeholder="E.g. Get my room under control, catch up on school, or stop feeling behind with money."
-            ></textarea>
+            <label class="field-label" for="heroGoalInput">What’s your goal?</label>
+            <textarea id="heroGoalInput" class="field-input"
+              placeholder="E.g. Get my room under control, catch up on school, or stop feeling behind with money."></textarea>
 
-            <label class="field-label">Energy for the next week</label>
-            <div class="slider-row">
-              <input type="range" id="energySlider" min="1" max="3" step="1" value="2" />
-              <span id="energyLabel" class="slider-label">Okay</span>
+            <div class="energy-row">
+              <span class="field-label">Energy &amp; capacity</span>
+              <div class="energy-control">
+                <input id="todayEnergy" type="range" min="1" max="3" value="2" />
+                <span class="energy-label">Okay</span>
+              </div>
             </div>
 
-            <button type="submit" class="btn-primary full-width">
+            <button id="heroBreakdownBtn" class="btn-primary wide-btn">
               Break it down
             </button>
-          </form>
 
-          <div class="hero-plan">
-            <div class="plan-header-row">
-              <h3 class="section-title small">Example plan</h3>
-              <button id="overwhelmBtn" class="btn-ghost small-btn">
-                Today is a lot
-              </button>
+            <div class="example-plan">
+              <div class="example-header">
+                <span>Example plan</span>
+                <button id="overwhelmBtn" class="btn-ghost tiny">Today is a lot</button>
+              </div>
+              <ol class="example-list">
+                <li>Limit caffeine in the evening.</li>
+                <li>Write down 5–5 ideas for long-term goals.</li>
+                <li>Go to bed by 12:00.</li>
+              </ol>
             </div>
-            <ul id="heroPlanList" class="simple-list"></ul>
           </div>
-        </section>
+        </div>
       </div>
 
-      <section class="card hero-info">
-        <div class="info-grid">
-          <div>
-            <h3 class="section-title small">Short term</h3>
-            <p class="section-subtitle">
-              Use “Today” to pick 3–7 small steps that would make the day feel like a win.
-            </p>
-          </div>
-          <div>
-            <h3 class="section-title small">Long term</h3>
-            <p class="section-subtitle">
-              Long-term goals get soft due dates and tiny steps you can actually do.
-            </p>
-          </div>
-          <div>
-            <h3 class="section-title small">Weekly reset</h3>
-            <p class="section-subtitle">
-              Once a week, Life Compass helps you keep what’s working and shrink or
-              drop what isn’t.
-            </p>
-          </div>
-          <div>
-            <h3 class="section-title small">Free account (optional)</h3>
-            <p class="section-subtitle">
-              Turn on “learning you” only if you want. Guests stay totally local and private.
-            </p>
-          </div>
+      <section class="home-band">
+        <div class="home-band-col">
+          <h3>How it works</h3>
+          <p>Take on less at once. Move forward in ways you can actually see.</p>
+        </div>
+        <div class="home-band-col">
+          <h3>Short-term &amp; long-term</h3>
+          <p>Quick “Today” planner plus soft dates for bigger goals.</p>
+        </div>
+        <div class="home-band-col">
+          <h3>Weekly resets</h3>
+          <p>Once a week, shrink what’s not helping and keep what is.</p>
+        </div>
+        <div class="home-band-col">
+          <h3>Gentle guidance</h3>
+          <p>
+            Use it as a guest forever, or create a free account so it can
+            learn your patterns and suggest next steps.
+          </p>
         </div>
       </section>
     </section>
 
-    <!-- TODAY -->
-    <section id="todaySection" class="view">
-      <div class="page-header-row">
-        <div>
-          <h2 class="page-title">Today</h2>
-          <p id="todayDateLabel" class="page-subtitle"></p>
-        </div>
-        <div class="today-controls">
-          <div class="energy-mini">
-            <span class="field-label">Energy</span>
-            <select id="todayEnergySelect">
-              <option value="low">Low</option>
-              <option value="ok" selected>Okay</option>
-              <option value="high">High</option>
-            </select>
+    <!-- TODAY ------------------------------------------------------------->
+    <section id="todaySection" class="content-section">
+      <div class="card today-card">
+        <div class="card-header">
+          <div>
+            <p id="topGreeting" class="card-kicker">Good day</p>
+            <h2>Today</h2>
+            <p id="todayDateLabel" class="card-sub"></p>
           </div>
-          <button id="todayOverwhelmBtn" class="btn-secondary small-btn">Today is a lot</button>
-          <button id="prioritizeTodayBtn" class="btn-secondary small-btn">Auto-prioritize</button>
+          <button id="prioritizeTodayBtn" class="btn-secondary">
+            Auto-pick today’s steps
+          </button>
         </div>
-      </div>
 
-      <div id="reminderBanner" class="reminder-strip hidden">
-        <span class="reminder-label">Due soon</span>
-        <ul id="reminderList" class="reminder-strip-list"></ul>
-      </div>
-
-      <div class="two-col">
-        <section class="card">
-          <h3 class="section-title">Today’s steps</h3>
-          <p class="section-subtitle">
-            Keep this list small. Overwhelm is a sign to shrink, not try harder.
-          </p>
-          <ul id="todayList" class="step-list"></ul>
-        </section>
-
-        <section class="side-stack">
-          <section class="card small-card">
-            <h3 class="section-title small">Snapshot</h3>
-            <div class="metrics-row">
+        <div class="today-grid">
+          <div>
+            <div class="metric-row">
               <div class="metric">
                 <span class="metric-label">Active goals</span>
                 <span id="statGoals" class="metric-value">0</span>
@@ -219,188 +190,147 @@
                 <span id="statCompleted" class="metric-value">0</span>
               </div>
             </div>
-            <p id="motivationText" class="micro-text"></p>
-          </section>
 
-          <section class="card small-card">
-            <h3 class="section-title small">Quick add</h3>
-            <form id="quickStepForm" class="vertical-form">
-              <label class="field-label" for="quickStepText">Step</label>
-              <input
-                id="quickStepText"
-                type="text"
-                placeholder="E.g. Read 5 pages, send 1 email"
-                required
-              />
-              <label class="field-label" for="quickStepGoalSelect">Attach to goal</label>
-              <select id="quickStepGoalSelect"></select>
-              <button type="submit" class="btn-primary full-width">Add to today</button>
-            </form>
-          </section>
-
-          <section class="card small-card">
-            <h3 class="section-title small">Suggested for today</h3>
-            <ul id="todaySuggestions" class="simple-list"></ul>
-            <p class="micro-text">
-              Personal suggestions only use your data if you’ve made a free account and
-              turned on “learning you”.
+            <p id="motivationText" class="micro-text">
+              One small step is enough.
             </p>
-          </section>
-        </section>
+
+            <div id="reminderBanner" class="reminder hidden">
+              <span class="reminder-title">Due soon</span>
+              <ul id="reminderList" class="reminder-list"></ul>
+            </div>
+
+            <ul id="todayList" class="step-list"></ul>
+          </div>
+
+          <div>
+            <h3 class="section-title">Quick add step</h3>
+            <p class="card-sub">
+              Add one realistic step and attach it to a goal. Life Compass will softly choose a due date.
+            </p>
+
+            <form id="quickStepForm" class="quick-form">
+              <input id="quickStepText" type="text" placeholder="E.g. Read 5 pages, send 1 email" required />
+              <select id="quickStepGoalSelect"></select>
+              <button type="submit" class="btn-primary">Add to today</button>
+            </form>
+
+            <h4 class="section-title spaced-top">Suggestions for today</h4>
+            <ul id="todaySuggestions" class="suggestion-list"></ul>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- GOALS -->
-    <section id="goalsSection" class="view">
-      <div class="page-header-row">
-        <div>
-          <h2 class="page-title">Goals</h2>
-          <p class="page-subtitle">
-            Turn big ideas into small, realistic steps. Leave the due date empty
-            if you want Life Compass to suggest one.
-          </p>
+    <!-- GOALS ------------------------------------------------------------->
+    <section id="goalsSection" class="content-section">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2>Your goals</h2>
+            <p class="card-sub">
+              Turn big ideas into tiny steps. The goal isn’t perfection – it’s momentum.
+            </p>
+          </div>
         </div>
-      </div>
 
-      <section class="card">
-        <form id="goalForm" class="grid-form">
-          <div class="field-group">
-            <label class="field-label" for="goalTitle">Goal</label>
-            <input
-              id="goalTitle"
-              type="text"
-              placeholder="E.g. Get my life more organized"
-              required
-            />
+        <form id="goalForm" class="goal-form">
+          <div class="goal-form-row">
+            <input id="goalTitle" type="text" placeholder="E.g. Get my life more organized" required />
           </div>
-          <div class="field-group">
-            <label class="field-label" for="goalCategory">Category</label>
-            <select id="goalCategory">
-              <option value="Life">Life</option>
-              <option value="School">School</option>
-              <option value="Health">Health</option>
-              <option value="Money">Money</option>
-              <option value="Work">Work</option>
-              <option value="Custom">Custom</option>
-            </select>
+          <div class="goal-form-row">
+            <label>
+              Category
+              <select id="goalCategory">
+                <option>Life</option>
+                <option>School</option>
+                <option>Money</option>
+                <option>Health</option>
+              </select>
+            </label>
+            <label>
+              Focus
+              <select id="goalTimeframe">
+                <option>Today</option>
+                <option>This Week</option>
+                <option>This Month</option>
+                <option>Long Term</option>
+              </select>
+            </label>
           </div>
-          <div class="field-group">
-            <label class="field-label" for="goalTimeframe">Focus</label>
-            <select id="goalTimeframe">
-              <option value="Today">Today</option>
-              <option value="This Week">This Week</option>
-              <option value="This Month">This Month</option>
-              <option value="Long Term">Long Term</option>
-            </select>
+          <div class="goal-form-row">
+            <textarea id="goalWhy" placeholder="Why this matters (optional)"></textarea>
           </div>
-          <div class="field-group full">
-            <label class="field-label" for="goalWhy">Why this matters (optional)</label>
-            <input
-              id="goalWhy"
-              type="text"
-              placeholder="E.g. I’m tired of feeling behind all the time"
-            />
-          </div>
-          <div class="field-actions">
-            <button type="submit" class="btn-primary">Add goal</button>
-          </div>
+          <button type="submit" class="btn-primary">Add goal</button>
         </form>
-      </section>
 
-      <section class="card">
-        <h3 class="section-title">Goals & steps</h3>
-        <p class="section-subtitle">
-          Each goal can have tiny, realistic steps. Long term still counts as one step at a time.
-        </p>
         <div id="goalsList" class="goals-list"></div>
-      </section>
+      </div>
     </section>
 
-    <!-- TEMPLATES -->
-    <section id="templatesSection" class="view">
-      <div class="page-header-row">
-        <div>
-          <h2 class="page-title">Templates</h2>
-          <p class="page-subtitle">
-            Add gentle starter goals in one click. You can edit or delete anything after.
-          </p>
+    <!-- IDEAS ------------------------------------------------------------->
+    <section id="ideasSection" class="content-section">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2>Ideas when you’re stuck</h2>
+            <p class="card-sub">
+              Tap a suggestion to quickly add it as a step.
+            </p>
+          </div>
+        </div>
+
+        <div class="ideas-grid">
+          <div>
+            <h3 class="section-title">Short term</h3>
+            <ul id="shortTermIdeas" class="idea-list"></ul>
+          </div>
+          <div>
+            <h3 class="section-title">Long term</h3>
+            <ul id="longTermIdeas" class="idea-list"></ul>
+          </div>
+          <div>
+            <h3 class="section-title">Personalized (with free account)</h3>
+            <ul id="personalIdeas" class="idea-list"></ul>
+          </div>
         </div>
       </div>
 
-      <section class="card templates-grid">
-        <button class="template-card" data-template="school">
-          <h3>School Reset</h3>
-          <p>Catch up without burning out: assignments, tests, and routine.</p>
-        </button>
-        <button class="template-card" data-template="room">
-          <h3>Room Reset</h3>
-          <p>Get your space under control in small sections.</p>
-        </button>
-        <button class="template-card" data-template="money">
-          <h3>Money Starter</h3>
-          <p>Start tracking, stop panicking. Tiny money habits only.</p>
-        </button>
-        <button class="template-card" data-template="health">
-          <h3>Health Basics</h3>
-          <p>Sleep, water, and movement without perfection.</p>
-        </button>
-        <button class="template-card" data-template="mental">
-          <h3>Mental Clean-Up</h3>
-          <p>Brain dumps, boundaries, and “no” practice.</p>
-        </button>
-        <button class="template-card" data-template="motivation">
-          <h3>Motivation Restart</h3>
-          <p>Rebuild momentum when you’ve been stuck for a while.</p>
-        </button>
-      </section>
-    </section>
-
-    <!-- IDEAS -->
-    <section id="ideasSection" class="view">
-      <div class="page-header-row">
-        <div>
-          <h2 class="page-title">Ideas</h2>
-          <p class="page-subtitle">
-            Gentle suggestions for when you know you need “something” but can’t decide what.
-          </p>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2>Templates</h2>
+            <p class="card-sub">
+              Add a gentle starter pack for the area you want to reset.
+            </p>
+          </div>
+        </div>
+        <div class="templates-row">
+          <button class="btn-secondary" data-template="school">School reset</button>
+          <button class="btn-secondary" data-template="room">Room reset</button>
+          <button class="btn-secondary" data-template="money">Money starter</button>
+          <button class="btn-secondary" data-template="mental">Mental clean-up</button>
+          <button class="btn-secondary" data-template="health">Health basics</button>
+          <button class="btn-secondary" data-template="motivation">Motivation restart</button>
         </div>
       </div>
-
-      <section class="card ideas-grid">
-        <div>
-          <h3 class="section-title small">Short term</h3>
-          <ul id="shortTermIdeas" class="simple-list"></ul>
-        </div>
-        <div>
-          <h3 class="section-title small">Long term</h3>
-          <ul id="longTermIdeas" class="simple-list"></ul>
-        </div>
-        <div>
-          <h3 class="section-title small">Based on your goals</h3>
-          <ul id="personalIdeas" class="simple-list"></ul>
-          <p class="micro-text">
-            Personal ideas only become “smart” if you have a free account and turn on
-            learning. Before that, they’re simple and generic on purpose.
-          </p>
-        </div>
-      </section>
     </section>
 
-    <!-- INSIGHTS -->
-    <section id="insightsSection" class="view">
-      <div class="page-header-row">
-        <div>
-          <h2 class="page-title">Insights</h2>
-          <p class="page-subtitle">
-            Simple reflection so you can see patterns without turning your life into a spreadsheet.
-          </p>
+    <!-- INSIGHTS + WEEKLY RESET ------------------------------------------->
+    <section id="insightsSection" class="content-section">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2>Insights</h2>
+            <p class="card-sub">
+              See how often you’re actually showing up – without shaming you for missing days.
+            </p>
+          </div>
         </div>
-      </div>
 
-      <section class="card">
         <div class="insights-grid">
           <div class="insight-card">
-            <span class="insight-label">Total goals</span>
+            <span class="insight-label">Goals</span>
             <span id="insightTotalGoals" class="insight-value">0</span>
           </div>
           <div class="insight-card">
@@ -424,293 +354,182 @@
             <span id="insightPersonalization" class="insight-value">Off</span>
           </div>
         </div>
+      </div>
 
-        <div class="backup-row">
+      <div class="card">
+        <div class="card-header">
           <div>
-            <h3 class="section-title small">Your data, your device</h3>
-            <p class="micro-text">
-              Life Compass saves everything in your browser. Download a backup if you
-              want a copy somewhere else.
+            <h2>Weekly reset</h2>
+            <p class="card-sub">
+              Once a week, shrink what’s not helping and keep what is.
             </p>
           </div>
-          <button id="exportBackupBtn" class="btn-secondary small-btn">
-            Download backup
+          <button id="weeklyShrinkBtn" class="btn-secondary">
+            Gently shrink next week
           </button>
         </div>
-      </section>
+        <textarea id="weeklyNotes"
+          placeholder="Jot down what’s working, what feels heavy, and what you want to change next week."></textarea>
+      </div>
     </section>
 
-    <!-- WEEKLY RESET -->
-    <section id="weeklyResetSection" class="view">
-      <div class="page-header-row">
-        <div>
-          <h2 class="page-title">Weekly Reset</h2>
-          <p class="page-subtitle">
-            A quick check-in to keep what’s working and shrink what isn’t.
-          </p>
+    <!-- SETTINGS / ACCOUNT ----------------------------------------------->
+    <section id="settingsSection" class="content-section">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2>Notifications &amp; reminders</h2>
+            <p class="card-sub">
+              Choose if Life Compass nudges you near due dates.
+            </p>
+          </div>
         </div>
-      </div>
 
-      <section class="card weekly-grid">
-        <form id="weeklyForm" class="vertical-form">
-          <label class="field-label" for="weeklyGood">This actually helped:</label>
-          <textarea id="weeklyGood" rows="3"></textarea>
-
-          <label class="field-label" for="weeklyHeavy">This felt heavy or pointless:</label>
-          <textarea id="weeklyHeavy" rows="3"></textarea>
-
-          <label class="field-label" for="weeklyNext">
-            Next week should feel more like:
+        <div class="settings-row">
+          <label class="settings-item">
+            <input id="remindersEnabled" type="checkbox" />
+            <span>Enable gentle reminders</span>
           </label>
-          <textarea id="weeklyNext" rows="3"></textarea>
 
-          <button type="submit" class="btn-primary full-width">
-            Apply reset
-          </button>
-        </form>
-
-        <div class="weekly-info">
-          <h3 class="section-title small">What the reset does</h3>
-          <ul class="simple-list">
-            <li>Softens due dates for overloaded goals.</li>
-            <li>Moves low–priority steps out of “Today”.</li>
-            <li>Highlights 1–3 goals to focus on next week.</li>
-          </ul>
-          <p class="micro-text">
-            Nothing is deleted automatically – it’s more like gently re–stacking your
-            priorities.
-          </p>
-        </div>
-      </section>
-    </section>
-
-    <!-- SETTINGS -->
-    <section id="settingsSection" class="view">
-      <div class="page-header-row">
-        <div>
-          <h2 class="page-title">Settings</h2>
-          <p class="page-subtitle">
-            Control reminders, appearance, and admin unlock.
-          </p>
+          <label class="settings-item">
+            Days before due date
+            <select id="remindDaysBefore">
+              <option value="1">1 day before</option>
+              <option value="2">2 days before</option>
+              <option value="3">3 days before</option>
+            </select>
+          </label>
         </div>
       </div>
 
-      <section class="card">
-        <form id="settingsForm" class="settings-grid">
-          <div class="field-group">
-            <label class="field-label" for="remindersEnabled">
-              Task reminders
-            </label>
-            <div class="settings-row">
-              <input type="checkbox" id="remindersEnabled" />
-              <span class="micro-text">
-                Show reminders when steps are close to their due date. You can also
-                allow browser notifications when prompted.
-              </span>
-            </div>
-          </div>
-
-          <div class="field-group">
-            <label class="field-label" for="remindDaysBefore">
-              Remind me this many days before due date
-            </label>
-            <select id="remindDaysBefore">
-              <option value="0">On the due day</option>
-              <option value="1">1 day before</option>
-              <option value="3">3 days before</option>
-              <option value="7">7 days before</option>
-            </select>
-          </div>
-
-          <div class="field-group">
-            <label class="field-label" for="modeSelect">Display mode</label>
-            <select id="modeSelect">
-              <option value="calm">Calm mode</option>
-              <option value="focus">Focus mode</option>
-            </select>
-          </div>
-
-          <div class="field-group">
-            <label class="field-label" for="adminPass">
-              Admin unlock (for you)
-            </label>
-            <input
-              id="adminPass"
-              type="password"
-              placeholder="Enter admin passphrase"
-            />
-            <p class="micro-text">
-              When the correct passphrase is entered, the Admin section appears so you can
-              toggle Premium and experiments. This is local for now.
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2>Free account (optional)</h2>
+            <p class="card-sub">
+              Turn on “learning you” only if you want. Guests stay totally local and private.
             </p>
           </div>
+          <span id="accountStatusLabel" class="badge-soft">
+            Guest mode
+          </span>
+        </div>
+
+        <div class="settings-row vertical">
+          <label>
+            Name (optional)
+            <input id="accountName" type="text" placeholder="How you’d like to be greeted" />
+          </label>
+          <label>
+            Email (optional)
+            <input id="accountEmail" type="email" placeholder="For future sync (not required)" />
+          </label>
+          <button id="accountToggleBtn" class="btn-primary">
+            Toggle free account mode
+          </button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2>Backup</h2>
+            <p class="card-sub">
+              Download a copy of your data to keep for yourself.
+            </p>
+          </div>
+        </div>
+        <button id="exportBackupBtn" class="btn-secondary">
+          Export backup file
+        </button>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2>Admin unlock</h2>
+            <p class="card-sub">
+              For you only. Enter the passphrase to see admin controls.
+            </p>
+          </div>
+        </div>
+        <input id="adminPass" type="password" placeholder="Admin passphrase" />
+      </div>
+    </section>
+
+    <!-- PREMIUM ----------------------------------------------------------->
+    <section id="premiumSection" class="content-section">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2>Premium (optional)</h2>
+            <p class="card-sub">
+              The app is fully usable for free. Premium is for people who want extra human support.
+            </p>
+          </div>
+        </div>
+
+        <div class="plans-grid">
+          <div class="plan">
+            <h3 class="plan-name">Free forever</h3>
+            <p class="plan-price">$0</p>
+            <ul class="plan-features">
+              <li>All core features</li>
+              <li>Today planner &amp; weekly reset</li>
+              <li>Templates &amp; ideas</li>
+              <li>Optional free account learning</li>
+            </ul>
+          </div>
+
+          <div id="premiumPlanCard" class="plan plan-highlight">
+            <h3 class="plan-name">Premium support</h3>
+            <p class="plan-price">You choose the rate</p>
+            <ul class="plan-features">
+              <li>Weekly human check-ins</li>
+              <li>Personalized weekly plan</li>
+              <li>Gentle accountability + email support</li>
+              <li>Priority responses from a real person</li>
+            </ul>
+            <button class="btn-primary">Join interest list</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADMIN ------------------------------------------------------------->
+    <section id="adminSection" class="content-section">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2>Admin controls (local prototype)</h2>
+            <p class="card-sub">
+              Toggle features for this device. Later, this will control real accounts.
+            </p>
+          </div>
+        </div>
+
+        <form id="adminFlagsForm" class="settings-row vertical">
+          <label class="settings-item">
+            <input id="flagPremiumEnabled" type="checkbox" />
+            <span>Show Premium plan</span>
+          </label>
+          <label class="settings-item">
+            <input id="flagSuggestionsEnabled" type="checkbox" />
+            <span>Enable suggestions &amp; ideas</span>
+          </label>
+          <label class="settings-item">
+            <input id="flagExperimentalEnabled" type="checkbox" />
+            <span>Enable experimental features</span>
+          </label>
         </form>
-      </section>
-    </section>
-
-    <!-- ACCOUNT -->
-    <section id="accountSection" class="view">
-      <div class="page-header-row">
-        <div>
-          <h2 class="page-title">Account</h2>
-          <p class="page-subtitle">
-            Guests get the full app. Accounts are free and only unlock learning & sync.
-          </p>
-        </div>
       </div>
-
-      <section class="card account-grid">
-        <div>
-          <h3 class="section-title small">Current mode</h3>
-          <p id="accountModeLabel" class="section-subtitle"></p>
-          <div class="account-buttons">
-            <button id="setGuestBtn" class="btn-secondary small-btn">Use as guest</button>
-            <button id="setAccountBtn" class="btn-primary small-btn">Create free account</button>
-          </div>
-        </div>
-
-        <div>
-          <h3 class="section-title small">Learning you</h3>
-          <p class="section-subtitle">
-            Only for account users. When on, Life Compass can suggest better due dates
-            and steps based on your patterns – never your private notes.
-          </p>
-          <div class="settings-row">
-            <input type="checkbox" id="learningEnabled" />
-            <span class="micro-text">
-              Turn this off anytime to freeze learning. Your existing data stays saved.
-            </span>
-          </div>
-        </div>
-      </section>
-    </section>
-
-    <!-- PREMIUM -->
-    <section id="premiumSection" class="view">
-      <div class="page-header-row">
-        <div>
-          <h2 class="page-title">Premium</h2>
-          <p class="page-subtitle">
-            The app stays fully usable for free. Premium is for people who want gentle
-            human support on top.
-          </p>
-        </div>
-      </div>
-
-      <section class="card premium-grid">
-        <div class="plan-card">
-          <h3>Free</h3>
-          <p class="plan-price">$0 · Forever</p>
-          <ul class="simple-list">
-            <li>Unlimited goals & steps</li>
-            <li>Daily plan & reminders</li>
-            <li>Templates & ideas</li>
-            <li>Optional free account</li>
-          </ul>
-          <button class="btn-ghost full-width">Current plan</button>
-        </div>
-
-        <div id="premiumPlanCard" class="plan-card highlight">
-          <h3>Premium</h3>
-          <p class="plan-price">$9 / month</p>
-          <ul class="simple-list">
-            <li>Weekly human review of your goals</li>
-            <li>Custom weekly plan built for you</li>
-            <li>“I’m stuck” email responses</li>
-            <li>Gentle accountability check–ins</li>
-          </ul>
-          <p class="micro-text">
-            Real human responses, not auto–generated spam.
-          </p>
-          <a
-            href="mailto:lifecompass270@gmail.com?subject=Life%20Compass%20Premium&body=Hi%2C%20I%27d%20like%20to%20upgrade%20to%20Premium.%20Here%27s%20how%20I%27m%20currently%20using%20Life%20Compass%3A"
-            class="btn-primary full-width-link"
-          >
-            Get started via email
-          </a>
-        </div>
-      </section>
-    </section>
-
-    <!-- CRISIS HELP -->
-    <section id="crisisSection" class="view">
-      <div class="page-header-row">
-        <div>
-          <h2 class="page-title">Crisis help</h2>
-          <p class="page-subtitle">
-            Life Compass is a planning tool, not an emergency service.
-          </p>
-        </div>
-      </div>
-
-      <section class="card">
-        <p class="section-subtitle">
-          If you’re in immediate danger or thinking about hurting yourself, please:
-        </p>
-        <ul class="simple-list">
-          <li>Call your local emergency number.</li>
-          <li>Reach out to someone you trust right now.</li>
-          <li>Use your country’s crisis hotline or text line.</li>
-        </ul>
-        <p class="micro-text">
-          You deserve real help from real people. Planning tools are just one small part
-          of taking care of yourself.
-        </p>
-      </section>
-    </section>
-
-    <!-- ADMIN -->
-    <section id="adminSection" class="view">
-      <div class="page-header-row">
-        <div>
-          <h2 class="page-title">Admin (local prototype)</h2>
-          <p class="page-subtitle">
-            These switches only affect this device for now. Later, they’ll control the
-            live product.
-          </p>
-        </div>
-      </div>
-
-      <section class="card">
-        <form id="adminFlagsForm" class="vertical-form">
-          <div class="field-group">
-            <label class="field-label">Premium card visible</label>
-            <div class="settings-row">
-              <input type="checkbox" id="flagPremiumEnabled" />
-              <span class="micro-text">
-                Turn this off to make Life Compass feel free–only.
-              </span>
-            </div>
-          </div>
-
-          <div class="field-group">
-            <label class="field-label">Suggestions enabled</label>
-            <div class="settings-row">
-              <input type="checkbox" id="flagSuggestionsEnabled" />
-              <span class="micro-text">
-                When off, Ideas still shows basics, but personal suggestions are hidden.
-              </span>
-            </div>
-          </div>
-
-          <div class="field-group">
-            <label class="field-label">Experimental features</label>
-            <div class="settings-row">
-              <input type="checkbox" id="flagExperimentalEnabled" />
-              <span class="micro-text">
-                Placeholder switch for anything new you want to test.
-              </span>
-            </div>
-          </div>
-        </form>
-      </section>
     </section>
   </main>
 
-  <footer class="main-footer">
-    <span>Life Compass · Built to be gentle, not overwhelming.</span>
+  <footer class="footer">
+    Life Compass · Built to be gentle, not overwhelming.
   </footer>
 
-  <script src="script.js" defer></script>
+  <script src="script.js"></script>
 </body>
-  </html>
+                </html>
