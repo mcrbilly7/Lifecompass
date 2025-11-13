@@ -4,169 +4,214 @@
   <meta charset="UTF-8" />
   <title>Life Compass – Small steps. Real progress.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
   <meta
     name="description"
-    content="Life Compass is a simple, calming daily organizer that turns your goals into clear steps and checklists. Free forever, with optional human support."
+    content="Life Compass is a calming life planner that turns your goals into tiny, realistic steps. Free forever, with optional human support."
   />
-
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="app-shell">
-    <!-- Top Bar -->
-    <header class="top-bar">
-      <div class="brand">
+    <!-- Side Nav -->
+    <aside class="side-nav">
+      <div class="side-brand">
         <div class="brand-logo">LC</div>
-        <div class="brand-text">
+        <div class="side-brand-text">
           <span class="brand-name">Life Compass</span>
           <span class="brand-tagline">Small steps. Real progress.</span>
         </div>
       </div>
 
-      <nav class="nav">
-        <button class="nav-link active" data-section="todaySection">Today</button>
-        <button class="nav-link" data-section="goalsSection">Goals</button>
-        <button class="nav-link" data-section="insightsSection">Insights</button>
-        <button class="nav-link" data-section="settingsSection">Settings</button>
-        <button class="nav-link" data-section="premiumSection">Premium</button>
+      <nav class="side-nav-links">
+        <button class="side-link active" data-section="homeSection">Home</button>
+        <button class="side-link" data-section="todaySection">Today</button>
+        <button class="side-link" data-section="goalsSection">Goals</button>
+        <button class="side-link" data-section="ideasSection">Ideas</button>
+        <button class="side-link" data-section="insightsSection">Insights</button>
+        <button class="side-link" data-section="settingsSection">Settings</button>
+        <button class="side-link" data-section="premiumSection">Premium</button>
+        <button class="side-link side-link-admin hidden" data-section="adminSection">
+          Admin
+        </button>
       </nav>
 
-      <button class="btn-premium-pill" data-section="premiumSection">
-        ✨ Upgrade to Premium
-      </button>
-    </header>
+      <div class="side-footer">
+        <span class="side-footer-text">Free first. Helpful always.</span>
+      </div>
+    </aside>
 
-    <!-- Main Layout -->
-    <main class="main-layout">
-      <!-- Sidebar -->
-      <aside class="sidebar">
-        <section class="card card-gradient">
-          <h2 class="section-title">Today at a Glance</h2>
-          <p class="section-subtitle" id="todayDateLabel"></p>
-          <div class="today-metric-grid">
-            <div class="metric">
-              <div class="metric-label">Active goals</div>
-              <div class="metric-value" id="statGoals">0</div>
-            </div>
-            <div class="metric">
-              <div class="metric-label">Steps today</div>
-              <div class="metric-value" id="statStepsToday">0</div>
-            </div>
-            <div class="metric">
-              <div class="metric-label">Completed</div>
-              <div class="metric-value" id="statCompleted">0</div>
-            </div>
-          </div>
-          <p class="micro-text" id="motivationText">
-            You don’t have to do everything. Just something.
-          </p>
-        </section>
+    <!-- Main content wrapper -->
+    <div class="main-column">
+      <!-- Top bar (small) -->
+      <header class="top-strip">
+        <div class="top-strip-left">
+          <span id="topGreeting"></span>
+        </div>
+        <button class="btn-premium-pill" data-section="premiumSection">
+          ✨ Upgrade to Premium
+        </button>
+      </header>
 
-        <section class="card">
-          <h2 class="section-title">Quick Add Step</h2>
-          <p class="section-subtitle">
-            Add a tiny step you can realistically do today.
-          </p>
-          <form id="quickStepForm" class="vertical-form">
-            <label class="field-label" for="quickStepText">Step</label>
-            <input
-              id="quickStepText"
-              type="text"
-              placeholder="E.g. Read 5 pages, send 1 email"
-              required
-            />
-
-            <label class="field-label" for="quickStepGoalSelect">Attach to goal</label>
-            <select id="quickStepGoalSelect"></select>
-
-            <button type="submit" class="btn-primary">Add to Today</button>
-          </form>
-        </section>
-
-        <section class="card subtle-card">
-          <h3 class="section-title small">Free & kind by design</h3>
-          <p class="micro-text">
-            Life Compass is fully usable for free. Premium is for people who want
-            extra human support – not basic features locked behind a paywall.
-          </p>
-        </section>
-      </aside>
-
-      <!-- Content Area -->
-      <section class="content">
-        <!-- Today Section -->
-        <section id="todaySection" class="content-section visible">
-          <!-- Hero / Landing area -->
-          <div class="hero-card card-gradient">
-            <div class="hero-main">
-              <h1 class="hero-title">A calmer way to get your life together.</h1>
+      <main class="content">
+        <!-- HOME -->
+        <section id="homeSection" class="content-section visible">
+          <div class="home-layout">
+            <section class="card home-hero card-gradient">
+              <h1 class="hero-title">Stop trying to fix your whole life at once.</h1>
               <p class="hero-subtitle">
-                Life Compass turns “I’m overwhelmed” into a few small steps you can
-                actually finish today. No ads. No chaos. Just a gentle daily plan.
+                Life Compass breaks big goals into tiny, honest steps – and quietly learns
+                how you work so it can recommend realistic next moves.
               </p>
+
               <div class="hero-cta-row">
-                <button class="btn-primary" data-section="goalsSection">
-                  Start with one small goal
+                <button class="btn-primary" data-section="todaySection">
+                  Plan today in 2 minutes
                 </button>
-                <button class="btn-secondary" data-section="premiumSection">
-                  See how Premium works
+                <button class="btn-secondary" data-section="ideasSection">
+                  Get step ideas
                 </button>
               </div>
+
               <p class="hero-note">
-                Free forever. Your goals are saved privately in your browser.
+                Free forever. No accounts required. Create one later if you want Life
+                Compass to remember you across devices.
               </p>
-            </div>
-            <div class="hero-badge">
-              <span class="hero-badge-label">Built for real life</span>
-              <span class="hero-badge-text">
-                Overwhelmed? Start with just one step today.
-              </span>
-            </div>
-          </div>
 
-          <!-- Reminder banner -->
-          <div id="reminderBanner" class="card reminder-card hidden">
-            <h3 class="section-title small">Upcoming steps</h3>
-            <p class="micro-text">
-              These steps are getting close to their due date:
-            </p>
-            <ul id="reminderList" class="reminder-list"></ul>
-          </div>
+              <div class="hero-pill-row">
+                <span class="hero-pill">No fake productivity</span>
+                <span class="hero-pill">Works with “messy” days</span>
+                <span class="hero-pill">Built for real life, not perfect people</span>
+              </div>
+            </section>
 
-          <div class="card">
-            <div class="card-header">
-              <div>
-                <h2 class="section-title">Today’s Plan</h2>
+            <section class="card home-columns">
+              <div class="home-column">
+                <h2 class="section-title">Short term</h2>
                 <p class="section-subtitle">
-                  Focus on 3–7 realistic steps. You can always do more, but this
-                  keeps you from burning out.
+                  Use “Today” to pick 3–7 small steps that would make the day feel like a win.
+                </p>
+                <ul class="home-list">
+                  <li>Clean one small area, not the whole room</li>
+                  <li>Send one message you’ve been avoiding</li>
+                  <li>Open the homework and do 5 minutes</li>
+                </ul>
+              </div>
+
+              <div class="home-column">
+                <h2 class="section-title">Long term</h2>
+                <p class="section-subtitle">
+                  Create gentle long–term goals. Life Compass will pick soft due dates for you.
+                </p>
+                <ul class="home-list">
+                  <li>Save your first $100 emergency buffer</li>
+                  <li>Raise one grade by a single letter</li>
+                  <li>Build a basic workout or sleep routine</li>
+                </ul>
+              </div>
+
+              <div class="home-column">
+                <h2 class="section-title">Accounts (optional)</h2>
+                <p class="section-subtitle">
+                  Use it as a guest forever, or create a free account so it can learn your
+                  patterns and give better recommendations.
+                </p>
+                <p class="micro-text">
+                  In a future version, accounts will sync across devices and unlock deeper
+                  personalization. Right now everything is saved on your device.
                 </p>
               </div>
-              <button id="prioritizeTodayBtn" class="btn-secondary">
-                Auto–prioritize today
-              </button>
-            </div>
-
-            <ul id="todayList" class="step-list"></ul>
-
-            <p class="micro-text">
-              Tip: If your list feels scary, you have too much. Cut it in half.
-            </p>
+            </section>
           </div>
         </section>
 
-        <!-- Goals Section -->
+        <!-- TODAY -->
+        <section id="todaySection" class="content-section">
+          <div class="two-col-layout">
+            <section class="card today-main">
+              <header class="card-header">
+                <div>
+                  <h2 class="section-title">Today’s plan</h2>
+                  <p class="section-subtitle" id="todayDateLabel"></p>
+                </div>
+                <button id="prioritizeTodayBtn" class="btn-secondary">
+                  Auto–prioritize
+                </button>
+              </header>
+
+              <div id="reminderBanner" class="reminder-strip hidden">
+                <span class="reminder-label">Due soon</span>
+                <ul id="reminderList" class="reminder-strip-list"></ul>
+              </div>
+
+              <ul id="todayList" class="step-list"></ul>
+              <p class="micro-text">
+                If this list feels heavy, delete or push a few things. Overwhelm is a sign
+                to shrink, not try harder.
+              </p>
+            </section>
+
+            <aside class="today-side">
+              <section class="card small-card">
+                <h3 class="section-title small">Snapshot</h3>
+                <div class="today-metric-grid">
+                  <div class="metric">
+                    <div class="metric-label">Active goals</div>
+                    <div class="metric-value" id="statGoals">0</div>
+                  </div>
+                  <div class="metric">
+                    <div class="metric-label">Steps today</div>
+                    <div class="metric-value" id="statStepsToday">0</div>
+                  </div>
+                  <div class="metric">
+                    <div class="metric-label">Completed</div>
+                    <div class="metric-value" id="statCompleted">0</div>
+                  </div>
+                </div>
+                <p class="micro-text" id="motivationText"></p>
+              </section>
+
+              <section class="card small-card">
+                <h3 class="section-title small">Quick add</h3>
+                <form id="quickStepForm" class="vertical-form">
+                  <label class="field-label" for="quickStepText">Step</label>
+                  <input
+                    id="quickStepText"
+                    type="text"
+                    placeholder="E.g. Read 5 pages, send 1 email"
+                    required
+                  />
+
+                  <label class="field-label" for="quickStepGoalSelect">Attach to goal</label>
+                  <select id="quickStepGoalSelect"></select>
+
+                  <button type="submit" class="btn-primary">Add to Today</button>
+                </form>
+              </section>
+
+              <section class="card small-card">
+                <h3 class="section-title small">Suggested for today</h3>
+                <ul id="todaySuggestions" class="suggestion-list"></ul>
+                <p class="micro-text">
+                  Suggestions start basic. After a couple of months of use, they become
+                  more tailored to how you actually work.
+                </p>
+              </section>
+            </aside>
+          </div>
+        </section>
+
+        <!-- GOALS -->
         <section id="goalsSection" class="content-section">
-          <div class="card">
-            <div class="card-header">
+          <section class="card">
+            <header class="card-header">
               <div>
-                <h2 class="section-title">Your Goals</h2>
+                <h2 class="section-title">Your goals</h2>
                 <p class="section-subtitle">
-                  Turn big ideas into tiny steps. The goal isn’t perfection – it’s momentum.
+                  Turn big ideas into small steps. Leave the due date empty and Life Compass
+                  will suggest one for you.
                 </p>
               </div>
-            </div>
+            </header>
 
             <form id="goalForm" class="grid-form">
               <div class="field-group">
@@ -210,24 +255,53 @@
                 <button type="submit" class="btn-primary">Add goal</button>
               </div>
             </form>
-          </div>
+          </section>
 
-          <div class="card">
-            <div class="card-header">
-              <h3 class="section-title">Goals & Steps</h3>
+          <section class="card">
+            <header class="card-header">
+              <h3 class="section-title">Goals & steps</h3>
               <p class="section-subtitle">
-                Add steps to each goal. Leave the due date empty and Life Compass will
-                suggest one for you.
+                Each goal can have tiny, realistic steps. Long term counts as one step at a time.
               </p>
-            </div>
+            </header>
 
             <div id="goalsList" class="goals-list"></div>
-          </div>
+          </section>
         </section>
 
-        <!-- Insights Section -->
+        <!-- IDEAS (AI-like suggestions) -->
+        <section id="ideasSection" class="content-section">
+          <section class="card">
+            <h2 class="section-title">Ideas & gentle suggestions</h2>
+            <p class="section-subtitle">
+              These are not demands – just ideas based on what people often find helpful.
+              As you use Life Compass, suggestions will lean closer to your patterns.
+            </p>
+
+            <div class="ideas-grid">
+              <div>
+                <h3 class="section-title small">Short term ideas</h3>
+                <ul id="shortTermIdeas" class="idea-list"></ul>
+              </div>
+              <div>
+                <h3 class="section-title small">Long term ideas</h3>
+                <ul id="longTermIdeas" class="idea-list"></ul>
+              </div>
+              <div>
+                <h3 class="section-title small">Based on your goals</h3>
+                <ul id="personalIdeas" class="idea-list"></ul>
+                <p class="micro-text">
+                  Personal suggestions become smarter after a couple of months of on–off
+                  use, or faster if you use Life Compass most days.
+                </p>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <!-- INSIGHTS -->
         <section id="insightsSection" class="content-section">
-          <div class="card">
+          <section class="card">
             <h2 class="section-title">Insights</h2>
             <p class="section-subtitle">
               Simple reflection so you can see patterns without spreadsheets.
@@ -250,36 +324,32 @@
                 <div class="insight-label">Completion rate</div>
                 <div class="insight-value" id="insightCompletionRate">0%</div>
               </div>
-            </div>
-
-            <div class="reflection">
-              <h3 class="section-title small">Today’s reflection</h3>
-              <p class="micro-text">
-                Answer these in your head or in a notebook – no pressure:
-              </p>
-              <ul class="reflection-list">
-                <li>What is one small win from today?</li>
-                <li>What drained your energy more than it needed to?</li>
-                <li>What is one thing you can make easier tomorrow?</li>
-              </ul>
+              <div class="insight-card">
+                <div class="insight-label">Active days</div>
+                <div class="insight-value" id="insightActiveDays">0</div>
+              </div>
+              <div class="insight-card">
+                <div class="insight-label">Personalization level</div>
+                <div class="insight-value" id="insightPersonalization">Starting</div>
+              </div>
             </div>
 
             <div class="backup-area">
               <h3 class="section-title small">Your data, your device</h3>
               <p class="micro-text">
-                Life Compass saves everything locally in your browser. If you want a backup, you
-                can download a JSON file and store it wherever you like.
+                Life Compass saves everything locally in your browser. Download a backup if
+                you want to keep a copy somewhere else.
               </p>
               <button id="exportBackupBtn" class="btn-secondary">
                 Download my backup
               </button>
             </div>
-          </div>
+          </section>
         </section>
 
-        <!-- Settings Section -->
+        <!-- SETTINGS -->
         <section id="settingsSection" class="content-section">
-          <div class="card">
+          <section class="card">
             <h2 class="section-title">Settings</h2>
             <p class="section-subtitle">
               Control reminders and how Life Compass nudges you.
@@ -311,21 +381,31 @@
                 </select>
               </div>
 
-              <p class="micro-text">
-                Browser notifications are only shown if your browser supports them and you grant
-                permission when asked. You can change that in your browser’s site settings.
-              </p>
+              <div class="field-group">
+                <label class="field-label" for="adminPass">
+                  Admin unlock (for you)
+                </label>
+                <input
+                  id="adminPass"
+                  type="password"
+                  placeholder="Enter admin passphrase"
+                />
+                <p class="micro-text">
+                  When the correct passphrase is entered, the Admin page appears so you can
+                  toggle features like Premium and experiments. This is local for now.
+                </p>
+              </div>
             </form>
-          </div>
+          </section>
         </section>
 
-        <!-- Premium Section -->
+        <!-- PREMIUM -->
         <section id="premiumSection" class="content-section">
-          <div class="card card-gradient">
+          <section class="card premium-hero card-gradient">
             <h2 class="section-title">Life Compass Premium</h2>
             <p class="section-subtitle">
-              The app stays fully functional for free. Premium is for people who want
-              a real human on their side – gently keeping them on track.
+              The main app stays fully usable for free. Premium is for people who want a
+              real human quietly checking in on their goals.
             </p>
 
             <div class="plans-grid">
@@ -333,26 +413,25 @@
                 <h3 class="plan-name">Free</h3>
                 <p class="plan-price">$0 forever</p>
                 <ul class="plan-features">
-                  <li>Unlimited goals</li>
-                  <li>Unlimited steps</li>
-                  <li>Daily plan & priority list</li>
-                  <li>Local, private storage (saved only on your device)</li>
-                  <li>Simple insights dashboard</li>
+                  <li>Unlimited goals & steps</li>
+                  <li>Daily plan & reminders</li>
+                  <li>Suggestions & ideas</li>
+                  <li>Local, private storage</li>
                 </ul>
                 <button class="btn-ghost" disabled>Current plan</button>
               </div>
 
-              <div class="plan plan-highlight">
+              <div class="plan plan-highlight" id="premiumPlanCard">
                 <h3 class="plan-name">Premium</h3>
                 <p class="plan-price">$9 / month</p>
                 <ul class="plan-features">
                   <li>Weekly human review of your goals</li>
                   <li>Custom weekly plan built for you</li>
-                  <li>Priority “Help me – I’m stuck” responses</li>
-                  <li>Human accountability check–ins via email</li>
+                  <li>“I’m stuck” email responses</li>
+                  <li>Gentle accountability check–ins</li>
                 </ul>
                 <p class="micro-text">
-                  This is not AI auto–spam. These are real human responses crafted for you.
+                  These are real human responses, not auto–generated spam.
                 </p>
                 <a
                   href="mailto:lifecompass270@gmail.com?subject=Life%20Compass%20Premium&body=Hi%2C%20I%27d%20like%20to%20upgrade%20to%20Premium.%20Here%27s%20how%20I%27m%20currently%20using%20Life%20Compass%3A"
@@ -362,67 +441,61 @@
                 </a>
               </div>
             </div>
-
-            <p class="micro-text center">
-              You can start free, stay free, and only upgrade if you truly feel it would
-              make your life meaningfully better.
-            </p>
-          </div>
-
-          <!-- FAQ Section -->
-          <div class="card faq-card">
-            <h2 class="section-title">Frequently Asked Questions</h2>
-            <ul class="faq-list">
-              <li class="faq-item">
-                <h3 class="faq-question">Is the free version actually enough?</h3>
-                <p class="faq-answer">
-                  Yes. You get unlimited goals, unlimited steps, daily planning and insights.
-                  You can use Life Compass forever without paying anything.
-                </p>
-              </li>
-              <li class="faq-item">
-                <h3 class="faq-question">Where is my data stored?</h3>
-                <p class="faq-answer">
-                  Everything is stored locally in your browser using private local storage.
-                  It’s not uploaded to a cloud database by default. If you clear your browser
-                  data, you can lose it – that’s why we added the backup download button.
-                </p>
-              </li>
-              <li class="faq-item">
-                <h3 class="faq-question">What do I actually get with Premium?</h3>
-                <p class="faq-answer">
-                  Premium gives you a real human on your side. You’ll get a weekly review of
-                  your goals, a customized weekly plan, and email check–ins that keep you
-                  moving when you feel stuck.
-                </p>
-              </li>
-              <li class="faq-item">
-                <h3 class="faq-question">Is Life Compass therapy or medical advice?</h3>
-                <p class="faq-answer">
-                  No. Life Compass is a gentle planning and accountability tool. It’s not a
-                  replacement for therapy, counseling, or medical care. If you’re in crisis,
-                  please reach out to local emergency services or a trusted professional.
-                </p>
-              </li>
-              <li class="faq-item">
-                <h3 class="faq-question">How do I cancel Premium?</h3>
-                <p class="faq-answer">
-                  Just reply to any Premium email or contact
-                  <a href="mailto:lifecompass270@gmail.com">lifecompass270@gmail.com</a>
-                  and ask to cancel. No tricks, no hidden steps.
-                </p>
-              </li>
-            </ul>
-          </div>
+          </section>
         </section>
-      </section>
-    </main>
 
-    <footer class="footer">
-      <span>Life Compass · Built to be gentle, not overwhelming.</span>
-    </footer>
+        <!-- ADMIN (local prototype) -->
+        <section id="adminSection" class="content-section">
+          <section class="card">
+            <h2 class="section-title">Admin controls (local prototype)</h2>
+            <p class="section-subtitle">
+              This is a local-only admin panel so you can test how it will feel to switch
+              features on and off. In a real backend, these switches would control the live
+              product.
+            </p>
+
+            <form id="adminFlagsForm" class="vertical-form">
+              <div class="field-group">
+                <label class="field-label">Premium card visible</label>
+                <div class="settings-row">
+                  <input type="checkbox" id="flagPremiumEnabled" />
+                  <span class="micro-text">
+                    Turn this off if you want to test Life Compass as a free–only tool.
+                  </span>
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label">Suggestions enabled</label>
+                <div class="settings-row">
+                  <input type="checkbox" id="flagSuggestionsEnabled" />
+                  <span class="micro-text">
+                    When off, the Ideas page still shows basic ideas, but personal
+                    suggestions are hidden.
+                  </span>
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label">Experimental features</label>
+                <div class="settings-row">
+                  <input type="checkbox" id="flagExperimentalEnabled" />
+                  <span class="micro-text">
+                    Placeholder switch for any future features you want to test.
+                  </span>
+                </div>
+              </div>
+            </form>
+          </section>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <span>Life Compass · Built to be gentle, not overwhelming.</span>
+      </footer>
+    </div>
   </div>
 
   <script src="script.js" defer></script>
 </body>
-  </html>
+                                                                    </html>
